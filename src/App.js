@@ -8,7 +8,6 @@ function App(props) {
   const { pathname } = props.location
   return (
     <div className="App">
-      app.js
       {pathname !== '/' ? <Nav /> : null}
       {routes}
     </div>

@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom'
 import Landing from './components/AccountComponents/Landing'
 import Register from './components/AccountComponents/Register'
 import Settings from './components/AccountComponents/Settings'
-import Dashboard from './components/apps/Dashboard'
+import Dashboard from './components/Dashboard'
 import DadJokes from './components/apps/DadJokes'
 import Weather from './components/apps/Weather'
 
