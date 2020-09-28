@@ -1,18 +1,43 @@
-import React from 'react'
+import React, { useState } from 'react'
+import axios from 'axios'
 import { Link } from 'react-router-dom'
+import { loginUser } from '../../ducks/authReducer'
+import { connect } from 'react-redux'
 
-function Landing() {
+
+
+function Landing(props) {
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+
+    function handleLogin(e) {
+        e.preventDefault()
+        axios.post('/api/auth/login', { email, password }).then(res => {
+            props.loginUser(res.data)
+            props.history.push('/dashboard')
+        }).catch(err => alert(err.response.request.response))
+    }
+
     return (
         <div className='Landing'>
             <p className='site-info'>Welcome to Father Figure! <br />The only site for dads. <br />Only things you need, Nothing you dont!
             </p>
             <div className='login-container'>
                 <p>Already a member? Login here!</p>
-                <label>Email: <input type='email' /></label>
-                <label>Password: <input type='password' /></label>
+                <div className='login-inputs'>
+                    <label>Email: <input value={email} type='email' onChange={e => setEmail(e.target.value)} /></label>
+                    <label>Password: <input value={password} type='password' onChange={e => setPassword(e.target.value)} /></label>
+                    <button type='submit' onClick={handleLogin}>Login</button>
+                </div>
+                <div className='register-btn'>
+                    <p>Not a member? Click here to register!</p>
+                    <Link to='/register'>
+                        <button>Click Me!</button>
+                    </Link>
+                </div>
             </div>
         </div>
     )
 }
 
-export default Landing
+export default connect(null, { loginUser })(Landing)
