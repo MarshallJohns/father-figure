@@ -12,10 +12,12 @@ function Landing(props) {
 
     function handleLogin(e) {
         e.preventDefault()
-        axios.post('/api/auth/login', { email, password }).then(res => {
-            props.loginUser(res.data)
-            props.history.push('/dashboard')
-        }).catch(err => alert(err.response.request.response))
+        if (email && password) {
+            axios.post('/api/auth/login', { email, password }).then(res => {
+                props.loginUser(res.data)
+                props.history.push('/dashboard')
+            }).catch(err => alert(err.response.request.response))
+        } else (alert('Please fill out both fields'))
     }
 
     return (
@@ -38,6 +40,7 @@ function Landing(props) {
             </div>
         </div>
     )
+
 }
 
 export default connect(null, { loginUser })(Landing)

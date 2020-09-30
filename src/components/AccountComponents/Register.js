@@ -5,8 +5,8 @@ import { connect } from 'react-redux'
 
 function Register(props) {
     const [form, setForm] = useState({
-        first: '',
-        last: '',
+        firstName: '',
+        lastName: '',
         email: '',
         password: '',
         confirm: ''
@@ -18,10 +18,10 @@ function Register(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        const { first, last, email, password, confirm } = form
+        const { firstName, lastName, email, password, confirm } = form
 
-        if (first, last, email, password, confirm) {
-            Axios.post('/api/auth/register', { first, last, email, password, confirm }).then(res => {
+        if (firstName, lastName, email, password, confirm) {
+            Axios.post('/api/auth/register', { firstName, lastName, email, password, confirm }).then(res => {
                 props.loginUser(res.data)
                 props.history.push('/dashboard')
             }).catch(err => alert(err.response.request.response))
@@ -37,11 +37,11 @@ function Register(props) {
         <div className='register-container'>
             <div className='input'>
                 <labe>First Name:</labe>
-                <input name='first' type='text' onChange={handleInputs} />
+                <input name='firstName' type='text' onChange={handleInputs} />
             </div>
             <div className='input'>
                 <label>Last Name:</label>
-                <input name='last' type='text' onChange={handleInputs} />
+                <input name='lastName' type='text' onChange={handleInputs} />
             </div>
             <div className='input'>
                 <label>Email:</label>

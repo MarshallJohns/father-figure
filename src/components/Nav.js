@@ -24,7 +24,7 @@ function Nav(props) {
         Axios.get('/api/auth/user').then(res => {
             props.getUser(res.data)
         })
-    })
+    }, [])
     return (
         <header className='navbar'>
             <h1>Father Figure</h1>
