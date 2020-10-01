@@ -104,7 +104,14 @@
 }
 
 .dropdown-ui {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
   margin-top: 15px;
+}
+
+.ui-items {
+  margin-top: 10px;
 }
 
 .logout {

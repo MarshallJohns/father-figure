@@ -1,8 +1,21 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 
-function DadJokes() {
+
+function DadJokes(props) {
+    const [favoriteJokes, setFavoriteJokes] = useState([])
+
+    useEffect(() => {
+        axios.get('/api/jokes').then(res => {
+            setFavoriteJokes(res.data)
+        }).catch(err => console.log(err.message))
+    }, [])
+
+    const mappedJokes = favoriteJokes.map(joke => {
+        return <p className='jokes'>{joke.joke_text}</p>
+    })
     return (
-        <div>DadJokes.js</div>
+        <div className='joke-box'>{mappedJokes}</div>
     )
 }
 

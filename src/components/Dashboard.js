@@ -20,6 +20,15 @@ function Dashboard(props) {
                 setDadJoke({ joke: res.data.joke, saved: false })
             })
     }
+    const handleSave = (e) => {
+        const { joke } = dadJoke
+        Axios.post('/api/jokes', { joke }).then(res => {
+            setDadJoke({ ...dadJoke, saved: true })
+
+
+        })
+
+    }
     // const handleWeather = () => { }
     return (
 
@@ -30,7 +39,7 @@ function Dashboard(props) {
                 {dadJoke.saved ?
                     <div>Want another joke?<button onClick={() => handleDadJoke()}>Click here!</button></div>
                     :
-                    <div>Wanna save that to your aresenal?<button onClick={() => setDadJoke({ ...dadJoke, saved: true })}>Click Here!</button></div>
+                    <div>Wanna save that to your aresenal?<button onClick={() => handleSave()}>Click Here!</button></div>
                 }
             </div>
         </div >
