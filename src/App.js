@@ -9,7 +9,6 @@ function App(props) {
   return (
     <div className="App">
       {pathname !== '/' && pathname !== '/register' ? <Nav /> : null}
-      {console.log(pathname)}
       {routes}
     </div>
   );

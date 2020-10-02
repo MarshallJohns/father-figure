@@ -1,7 +1,9 @@
 const initialState = {
     firstName: '',
     lastName: '',
-    email: ''
+    email: '',
+    profile_picture: '',
+    zipcode: ''
 }
 
 const LOGIN_USER = 'LOGIN_USER'
@@ -32,10 +34,14 @@ export function logoutUser() {
 export default function reducer(state = initialState, action) {
     switch (action.type) {
         case LOGIN_USER: {
-            return { ...state, firstName: action.payload.first_name, lastName: action.payload.last_name, email: action.payload.email }
+            const { first_name, last_name, email } = action.payload.user
+            const { profile_pic, zipcode } = action.payload.userInfo
+            return { ...state, firstName: first_name, lastName: last_name, email: email, profile_picture: profile_pic, zipcode: zipcode }
         }
         case GET_USER: {
-            return { ...state, firstName: action.payload.first_name, lastName: action.payload.last_name, email: action.payload.email }
+            const { first_name, last_name, email } = action.payload.user
+            const { profile_pic, zipcode } = action.payload.userInfo
+            return { ...state, firstName: first_name, lastName: last_name, email: email, profile_picture: profile_pic, zipcode: zipcode }
         }
         case LOGOUT_USER: {
             return initialState

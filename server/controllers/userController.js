@@ -14,7 +14,6 @@ module.exports = {
 
         const jokes = await db.get_jokes([id])
         res.status(200).send(jokes)
-
     }
 
 }

@@ -36,7 +36,9 @@ module.exports = {
 
         delete existingUser.hash
 
-        req.session.user = existingUser
+        const [userInfo] = await db.get_user_info([existingUser.id])
+
+        req.session.user = { user: existingUser, userInfo: userInfo }
         res.status(200).send(req.session.user)
 
     },

@@ -11,8 +11,8 @@ function DadJokes(props) {
         }).catch(err => console.log(err.message))
     }, [])
 
-    const mappedJokes = favoriteJokes.map(joke => {
-        return <p className='jokes'>{joke.joke_text}</p>
+    const mappedJokes = favoriteJokes.map((joke, index) => {
+        return <p key={index} className='jokes'>{joke.joke_text}</p>
     })
     return (
         <div className='joke-box'>{mappedJokes}</div>

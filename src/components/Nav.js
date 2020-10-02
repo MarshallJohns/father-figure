@@ -29,7 +29,7 @@ function Nav(props) {
         <header className='navbar'>
             <h1>Father Figure</h1>
             <div className='nav-ui'>
-                <img alt='User' />
+                <img style={{ width: '50px', height: '50px' }} src={props.profile_picture} alt='User' />
                 <Link style={{ textDecoration: 'none', color: 'black' }} to='/dashboard'>
                     <h3>{props.firstName}</h3>
                 </Link>
