@@ -3,20 +3,27 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import Axios from 'axios'
 
+
+
 function Dashboard(props) {
     const [dadJoke, setDadJoke] = useState({
         joke: '',
         saved: false
     })
-    const [weather, setWeather] = useState({})
+    const [weather, setWeather] = useState({
+        main: {},
+        weather: {}
+    })
+    const [loading, setLoading] = useState(true)
+    const [fahrenheit, setFahrenheit] = useState(true)
 
     useEffect(() => {
-        handleDadJoke()
         handleWeather()
+        handleDadJoke()
     }, [])
 
-    const handleDadJoke = () => {
-        Axios.get('https://icanhazdadjoke.com/', { headers: { "User-Agent": "https://github.com/MarshallJohns/father-figure", "Accept": "application/json" } })
+    const handleDadJoke = async () => {
+        await Axios.get('https://icanhazdadjoke.com/', { headers: { "User-Agent": "My Library (https://github.com/MarshallJohns/father-figure)", "Accept": "application/json" } })
             .then(res => {
                 setDadJoke({ joke: res.data.joke, saved: false })
             })
@@ -27,16 +34,20 @@ function Dashboard(props) {
             setDadJoke({ ...dadJoke, saved: true })
         })
     }
-    const handleWeather = () => {
+    const handleWeather = async () => {
         const apiKey = '1c4df6046da516c6860ef3c69f5acf67'
         if (props.zipcode) {
-            Axios.get(`http://api.openweathermap.org/data/2.5/weather?zip=${props.zipcode},&appid=${apiKey}`)
-                .then(res => setWeather(res.data))
+            await Axios.get(`http://api.openweathermap.org/data/2.5/weather?zip=${props.zipcode},&appid=${apiKey}`)
+                .then(res => {
+                    setWeather(res.data)
+                    // setLoading(false)
+                })
         }
     }
 
-
-    // const fahrenheit = (main.temp − 273.15) × 9/5 + 32
+    const kelvin = weather.main.temp
+    const toFahrenheit = (k) => Math.floor((k - 273.15) * 9 / 5 + 32)
+    const toCelsius = (k) => Math.floor(k - 274.15)
     return (
 
         < div className='dashboard' >
@@ -55,9 +66,13 @@ function Dashboard(props) {
                 {!props.zipcode ?
                     <div>Please save your zipcode in settings to view your current weather.</div>
                     :
-                    <div>
-                        {console.log(weather.main)}
-
+                    <div className='weather'>
+                        {fahrenheit ? <div>{toFahrenheit(kelvin)}</div> : <div>{toCelsius(kelvin)}</div>}
+                        <div className='scale-btn'>
+                            <div onClick={() => setFahrenheit(false)}>°C </div>
+                            /
+                            <div onClick={() => setFahrenheit(true)}>°F </div>
+                        </div>
                     </div>}
             </div>
         </div >

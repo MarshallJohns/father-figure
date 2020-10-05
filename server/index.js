@@ -24,6 +24,7 @@ app.get('/api/auth/user', authCtrl.getUser)
 //* User endpoints
 app.post('/api/jokes', userCtrl.saveJoke)
 app.get('/api/jokes', userCtrl.getJokes)
+// app.get('/api/weather/current', userCtrl.getCurrentWeather)
 
 
 massive({
