@@ -36,7 +36,8 @@ function Nav(props) {
                 <div onClick={handleDisplay} className='hamburger'></div>
                 <div className={display ? 'display' : 'noDisplay'}>
                     <div className='dropdown-ui'>
-                        <Link className='ui-items' style={{ textDecoration: 'none', color: 'white' }} to='dadjokes'>Favorite Jokes</Link>
+                        <Link className='ui-items' style={{ textDecoration: 'none', color: 'white' }} to='/dadjokes'>Favorite Jokes</Link>
+                        <Link className='ui-items' style={{ textDecoration: 'none', color: 'white' }} to='/weather'>Weather</Link>
                         <Link className='ui-items' style={{ textDecoration: 'none', color: 'white' }} to='/settings'>Settings</Link>
                     </div>
                     <Link className='logout' style={{ textDecoration: 'none', color: 'white' }} onClick={handleLogout} to='/'>Logout</Link>

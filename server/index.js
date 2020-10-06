@@ -20,6 +20,8 @@ app.post('/api/auth/register', authCtrl.register)
 app.post('/api/auth/login', authCtrl.login)
 app.delete('/api/auth/logout', authCtrl.logout)
 app.get('/api/auth/user', authCtrl.getUser)
+app.get('/api/auth/info', authCtrl.getUserInfo)
+app.put('/api/auth/edit', authCtrl.editInfo)
 
 //* User endpoints
 app.post('/api/jokes', userCtrl.saveJoke)

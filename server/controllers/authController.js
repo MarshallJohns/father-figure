@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs')
 module.exports = {
     register: async (req, res) => {
         const db = req.app.get('db')
-        const { firstName, lastName, email, password, confirm } = req.body
+        const { firstName, lastName, email, password, confirm, zipcode, profile_picture } = req.body
 
         const [existingUser] = await db.get_user_by_email([email])
         if (existingUser) {
@@ -17,7 +17,10 @@ module.exports = {
         const hash = bcrypt.hashSync(password, salt)
 
         const [newUser] = await db.register_user([firstName, lastName, email, hash])
-        req.session.user = newUser
+        delete newUser.hash
+        const [userInfo] = await db.create_user_info([profile_picture, zipcode, newUser.id])
+
+        req.session.user = { user: newUser, userInfo: userInfo }
         res.status(200).send(req.session.user)
     },
     login: async (req, res) => {
@@ -52,5 +55,20 @@ module.exports = {
         }
 
         res.status(200).send(req.session.user)
+    },
+    getUserInfo: async (req, res) => {
+        const db = req.app.get('db')
+        const { id } = req.session.user.user
+
+        const [info] = await db.get_user_info([id])
+        res.status(200).send(info)
+    },
+    editInfo: async (req, res) => {
+        const db = req.app.get('db')
+        const { id } = req.session.user.user
+        const { zipcode, profile_picture } = req.body
+
+        await db.update_user_info([id, profile_picture, zipcode])
+        res.sendStatus(200)
     }
 }

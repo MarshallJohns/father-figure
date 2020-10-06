@@ -9,7 +9,9 @@ function Register(props) {
         lastName: '',
         email: '',
         password: '',
-        confirm: ''
+        confirm: '',
+        zipcode: '',
+        profile_picture: ''
     })
 
     const handleInputs = (e) => {
@@ -18,10 +20,10 @@ function Register(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        const { firstName, lastName, email, password, confirm } = form
+        const { firstName, lastName, email, password, confirm, zipcode, profile_picture } = form
 
         if (firstName, lastName, email, password, confirm) {
-            Axios.post('/api/auth/register', { firstName, lastName, email, password, confirm }).then(res => {
+            Axios.post('/api/auth/register', { firstName, lastName, email, password, confirm, zipcode, profile_picture }).then(res => {
                 props.loginUser(res.data)
                 props.history.push('/dashboard')
             }).catch(err => alert(err.response.request.response))
@@ -55,6 +57,15 @@ function Register(props) {
                 <label>Confirm Password:</label>
                 <input name='confirm' type='password' onChange={handleInputs} />
             </div>
+            <div className='input'>
+                <label>Zipcode:</label>
+                <input name='zipcode' type='text' onChange={handleInputs} />
+            </div>
+            <div className='input'>
+                <label>Profile Picture:</label>
+                <input name='profile_picture' type='text' onChange={handleInputs} />
+            </div>
+
             <button onClick={handleSubmit} type='submit'>Submit</button>
         </div>
     )

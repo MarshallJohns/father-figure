@@ -152,5 +152,18 @@
   display: flex;
 }
 
+.settings {
+  height: 700px;
+  width: 500px;
+  background-color: lightblue;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.settings > div div {
+  margin-top: 20px;
+}
+
 
 

@@ -16,7 +16,7 @@ function Landing(props) {
             axios.post('/api/auth/login', { email, password }).then(res => {
                 props.loginUser(res.data)
                 props.history.push('/dashboard')
-            }).catch(err => alert(err.response.request.response))
+            }).catch(err => console.log(err.message))
         } else (alert('Please fill out both fields'))
     }
 
