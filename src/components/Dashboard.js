@@ -40,7 +40,7 @@ function Dashboard(props) {
             await Axios.get(`http://api.openweathermap.org/data/2.5/weather?zip=${props.zipcode},&appid=${apiKey}`)
                 .then(res => {
                     setWeather(res.data)
-                    // setLoading(false)
+                    setLoading(false)
                 })
         }
     }
@@ -50,31 +50,36 @@ function Dashboard(props) {
     const toCelsius = (k) => Math.floor(k - 274.15)
     return (
 
-        < div className='dashboard' >
-            <div className='widget'>
-                <div className='dad-joke'>
-                    <h2>Have a joke on us!</h2>
-                    <p>{dadJoke.joke}</p>
-                    {dadJoke.saved ?
-                        <div>Want another joke?<button onClick={() => handleDadJoke()}>Click here!</button></div>
-                        :
-                        <div>Wanna save that to your aresenal?<button onClick={() => handleSave()}>Click Here!</button></div>
-                    }
+        < div>
+            {!loading ? <div className='dashboard'>
+                <div className='widget'>
+                    <div className='dad-joke'>
+                        <h2>Have a joke on us!</h2>
+                        <p>{dadJoke.joke}</p>
+                        {dadJoke.saved ?
+                            <div>Want another joke?<button onClick={() => handleDadJoke()}>Click here!</button></div>
+                            :
+                            <div>Wanna save that to your aresenal?<button onClick={() => handleSave()}>Click Here!</button></div>
+                        }
+                    </div>
                 </div>
-            </div>
-            <div className='widget'>
-                {!props.zipcode ?
-                    <div>Please save your zipcode in settings to view your current weather.</div>
-                    :
-                    <div className='weather'>
-                        {fahrenheit ? <div>{toFahrenheit(kelvin)}</div> : <div>{toCelsius(kelvin)}</div>}
-                        <div className='scale-btn'>
-                            <div onClick={() => setFahrenheit(false)}>°C </div>
-                            /
-                            <div onClick={() => setFahrenheit(true)}>°F </div>
-                        </div>
-                    </div>}
-            </div>
+                <div className='widget'>
+                    {!props.zipcode ?
+                        <div>Please save your zipcode in settings to view your current weather.</div>
+                        :
+                        <div className='weather'>
+
+                            <h1>{weather.name}</h1>
+                            {fahrenheit ? <div>{toFahrenheit(kelvin)}</div> : <div>{toCelsius(kelvin)}</div>}
+                            <div className='scale-btn'>
+                                <div className={!fahrenheit ? 'selected' : 'unselected'} onClick={() => setFahrenheit(false)}>°C </div>
+                                    /
+                                <div className={fahrenheit ? 'selected' : 'unselected'} onClick={() => setFahrenheit(true)}>°F </div>
+                            </div>
+                            <h3>{weather.weather[0].main}</h3>
+                        </div>}
+                </div>
+            </div> : <div>loading</div>}
         </div >
     )
 }

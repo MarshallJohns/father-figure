@@ -1,0 +1,185 @@
+
+  
+
+.Landing {
+  width: 100%;
+  height: 100vh;
+  background-color: blue;
+}
+
+.site-info {
+  width: 500px;
+  height: 700px;
+  background-color: red;
+  position: absolute;
+  left: 300px;
+  top: 130px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 50px;
+  text-transform: uppercase;
+
+  > br {
+    margin-top: 10px;
+  }
+}
+
+.login-container {
+  width: 500px;
+  height: 700px;
+  background: red;
+  position: absolute;
+  right: 300px;
+  top: 130px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.login-inputs {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.register-container {
+  width: 700px;
+  height: 900px;
+  background-color: lightblue;
+  display: flex;
+  flex-direction: column;
+}
+
+.input {
+  margin-top: 20px;
+  font-size: 25px;
+  align-self: center;
+}
+
+.navbar {
+  height: 10vh;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(94, 90, 90);
+  align-items: center;
+
+  > h1 {
+    margin-left: 50px;
+  }
+}
+
+.hamburger {
+  width: 50px;
+  height: 50px;
+  background-color: pink;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-ui {
+  display: flex;
+  width: 300px;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.noDisplay {
+  display: none;
+}
+
+.display {
+  position: absolute;
+  right: 15px;
+  top: 110px;
+  width: 150px;
+  height: 350px;
+  background-color: blue;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  text-decoration: none;
+}
+
+.dropdown-ui {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-top: 15px;
+}
+
+.ui-items {
+  margin-top: 10px;
+}
+
+.logout {
+  margin-bottom: 15px;
+}
+
+.dashboard {
+  height: 90vh;
+  width: 100%;
+  background-color: rgb(195, 161, 228);
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.widget {
+  height: 400px;
+  width: 500px;
+  border: 5px solid black;
+  font-size: 35px;
+}
+
+.dad-joke {
+  h2 {
+    text-decoration: underline;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 45px;
+    margin-top: 15px;
+    margin-bottom: 30px;
+  }
+
+  p {
+    margin: 15px 15px;
+    border: 1px solid black;
+    padding: 10px 10px;
+  }
+}
+
+.weather {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.scale-btn {
+  display: flex;
+}
+
+.selected {
+  color: black;
+}
+
+.unselected {
+  color: rgb(92, 90, 90);
+}
+
+.settings {
+  height: 700px;
+  width: 500px;
+  background-color: lightblue;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  > div div {
+    margin-top: 20px;
+  }
+}

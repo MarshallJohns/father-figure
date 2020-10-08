@@ -67,8 +67,9 @@ module.exports = {
         const db = req.app.get('db')
         const { id } = req.session.user.user
         const { zipcode, profile_picture } = req.body
-
         await db.update_user_info([id, profile_picture, zipcode])
+        const [userInfo] = await db.get_user_info([id])
+        req.session.user.userInfo = userInfo
         res.sendStatus(200)
     }
 }

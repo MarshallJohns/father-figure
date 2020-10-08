@@ -1,32 +1,33 @@
 import Axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
+import { getUser } from '../../ducks/authReducer'
 
 function Settings(props) {
     const [editing, setEditing] = useState(false)
-    const [inputs, setInputs] = useState({
-        zipcode: null,
-        profile_picture: ''
-    })
+    const [zipcode, setZipcode] = useState(props.zipcode)
+    const [profile_picture, setProfile_picture] = useState(props.profile_picture)
 
-    useEffect(() => {
-        Axios.get('/api/auth/info').then(res => {
-            console.log(res.data)
-            const { zipcode, profile_pic } = res.data
-            setInputs({
-                zipcode: zipcode,
-                profile_picture: profile_pic
-            })
-        })
-    }, [])
+    // useEffect(() => {
+    //     Axios.get('/api/auth/info').then(res => {
+    //         console.log(res.data)
+    //         const { zipcode, profile_pic } = res.data
+    //         setInputs({
+    //             zipcode: zipcode,
+    //             profile_picture: profile_pic
+    //         })
+    //     })
+    // }, [])
 
-    const handleInputs = (e) => {
-        setInputs({ [e.target.name]: e.target.value })
-    }
+
+    // console.log(props)
 
     const handleSubmit = () => {
-        const { zipcode, profile_picture } = inputs
+        // const { zipcode, profile_picture } = inputs
         Axios.put('/api/auth/edit', { zipcode, profile_picture }).then(res => {
+            Axios.get('/api/auth/user').then(res => {
+                props.getUser(res.data)
+            })
             setEditing(false)
         }).catch(err => console.log(err.message))
     }
@@ -46,12 +47,12 @@ function Settings(props) {
                 <div>
                     <div>
                         <label>Zipcode:</label>
-                        <input onChange={(e) => handleInputs(e)} name='zipcode' type='text' value={inputs.zipcode} />
-                        {console.log(inputs.zipcode)}
+                        <input onChange={(e) => setZipcode(e.target.value)} name='zipcode' type='text' value={zipcode} />
+
                     </div>
                     <div>
                         <label>Profile Picture:</label>
-                        <input onChange={(e) => handleInputs(e)} name='profile_picture' type='text' value={inputs.profile_picture} />
+                        <input onChange={(e) => setProfile_picture(e.target.value)} name='profile_picture' type='text' value={profile_picture} />
                     </div>
                     <button type='submit' onClick={() => handleSubmit()}>Submit Changes</button>
                 </div>}
@@ -60,4 +61,4 @@ function Settings(props) {
 }
 
 const mapStateToProps = reduxState => reduxState
-export default connect(mapStateToProps)(Settings)
+export default connect(mapStateToProps, { getUser })(Settings)
