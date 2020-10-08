@@ -69,14 +69,17 @@ function Dashboard(props) {
                         :
                         <div className='weather'>
 
-                            <h1>{weather.name}</h1>
-                            {fahrenheit ? <div>{toFahrenheit(kelvin)}</div> : <div>{toCelsius(kelvin)}</div>}
+                            <h2>{weather.name}</h2>
+                            <h3>{weather.weather[0].description}</h3>
+                            <div className='weather-icon'>
+                                <img src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@4x.png`} />
+                            </div>
+                            {fahrenheit ? <div className='temp'>{toFahrenheit(kelvin)}°</div> : <div className='temp'>{toCelsius(kelvin)}°</div>}
                             <div className='scale-btn'>
                                 <div className={!fahrenheit ? 'selected' : 'unselected'} onClick={() => setFahrenheit(false)}>°C </div>
                                     /
                                 <div className={fahrenheit ? 'selected' : 'unselected'} onClick={() => setFahrenheit(true)}>°F </div>
                             </div>
-                            <h3>{weather.weather[0].main}</h3>
                         </div>}
                 </div>
             </div> : <div>loading</div>}

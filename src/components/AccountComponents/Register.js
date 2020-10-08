@@ -4,23 +4,19 @@ import { loginUser } from '../../ducks/authReducer'
 import { connect } from 'react-redux'
 
 function Register(props) {
-    const [form, setForm] = useState({
-        firstName: '',
-        lastName: '',
-        email: '',
-        password: '',
-        confirm: '',
-        zipcode: '',
-        profile_picture: ''
-    })
 
-    const handleInputs = (e) => {
-        setForm({ ...form, [e.target.name]: e.target.value })
-    }
+    const [firstName, setFirstName] = useState('')
+    const [lastName, setLastName] = useState('')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [confirm, setConfirm] = useState('')
+    const [profile_picture, setProfile_picture] = useState('')
+    const [zipcode, setZipcode] = useState('')
+    const [count, setCount] = useState(1)
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        const { firstName, lastName, email, password, confirm, zipcode, profile_picture } = form
+
+
+    const handleSubmit = () => {
 
         if (firstName, lastName, email, password, confirm) {
             Axios.post('/api/auth/register', { firstName, lastName, email, password, confirm, zipcode, profile_picture }).then(res => {
@@ -37,36 +33,52 @@ function Register(props) {
 
     return (
         <div className='register-container'>
-            <div className='input'>
-                <labe>First Name:</labe>
-                <input name='firstName' type='text' onChange={handleInputs} />
-            </div>
-            <div className='input'>
-                <label>Last Name:</label>
-                <input name='lastName' type='text' onChange={handleInputs} />
-            </div>
-            <div className='input'>
-                <label>Email:</label>
-                <input name='email' type='email' onChange={handleInputs} />
-            </div>
-            <div className='input'>
-                <label>Password:</label>
-                <input name='password' type='password' onChange={handleInputs} />
-            </div>
-            <div className='input'>
-                <label>Confirm Password:</label>
-                <input name='confirm' type='password' onChange={handleInputs} />
-            </div>
-            <div className='input'>
-                <label>Zipcode:</label>
-                <input name='zipcode' type='text' onChange={handleInputs} />
-            </div>
-            <div className='input'>
-                <label>Profile Picture:</label>
-                <input name='profile_picture' type='text' onChange={handleInputs} />
-            </div>
+            { count === 1 ?
+                <div>
+                    <div className='input'>
+                        <labe>First Name:</labe>
+                        <input value={firstName} type='text' onChange={(e) => setFirstName(e.target.value)} />
+                    </div>
+                    <div className='input'>
+                        <label>Last Name:</label>
+                        <input value={lastName} type='text' onChange={(e) => setLastName(e.target.value)} />
+                    </div>
+                    <div className='input'>
+                        <label>Email:</label>
+                        <input value={email} type='email' onChange={(e) => setEmail(e.target.value)} />
+                    </div>
+                    <button onClick={() => setCount(count + 1)}>Next</button>
+                </div>
+                :
+                null}
+            {count === 2 ? <div>
+                <div className='input'>
+                    <label>Password:</label>
+                    <input value={password} type='password' onChange={(e) => setPassword(e.target.value)} />
+                </div>
+                <div className='input'>
+                    <label>Confirm Password:</label>
+                    <input value={confirm} type='password' onChange={(e) => setConfirm(e.target.value)} />
+                </div>
+                <button onClick={() => setCount(count - 1)}>Back</button>
+                <button onClick={() => setCount(count + 1)}>Next</button>
+            </div> :
+                null}
+            {count === 3 ? <div>
+                <div className='input'>
+                    <label>Zipcode:</label>
+                    <input value={zipcode} type='text' onChange={(e) => setZipcode(e.target.value)} />
+                </div>
 
-            <button onClick={handleSubmit} type='submit'>Submit</button>
+                <div className='input'>
+                    <label>Profile Picture:</label>
+                    <input value={profile_picture} type='text' onChange={(e) => setProfile_picture(e.target.value)} />
+                </div>
+                <button onClick={() => setCount(count - 1)}>Back</button>
+                <button onClick={() => handleSubmit()} type='submit'>Submit</button>
+            </div> : null}
+
+            <p>{`Step: ${count}/3`}</p>
         </div>
     )
 }

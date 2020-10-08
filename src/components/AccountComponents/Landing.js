@@ -22,9 +22,8 @@ function Landing(props) {
 
     return (
         <div className='Landing'>
-            <p className='site-info'>Welcome to Father Figure! <br />The only site for dads. <br />Only things you need, Nothing you dont!
-            </p>
             <div className='login-container'>
+                <h1>Father Figure</h1>
                 <p>Already a member? Login here!</p>
                 <div className='login-inputs'>
                     <label>Email: <input value={email} type='email' onChange={e => setEmail(e.target.value)} /></label>

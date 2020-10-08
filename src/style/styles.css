@@ -1,16 +1,13 @@
+body {
+  font-family: "Secular One", sans-serif;
+}
+
 .Landing {
   width: 100%;
   height: 100vh;
-  background-color: blue;
-}
-
-.site-info {
-  width: 500px;
-  height: 700px;
-  background-color: red;
-  position: absolute;
-  left: 300px;
-  top: 130px;
+  background-image: url(https://i.pinimg.com/originals/79/af/85/79af850d3d436064fef7399f0a1783fe.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -20,31 +17,34 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  font-size: 50px;
-  text-transform: uppercase;
-}
-
-.site-info > br {
-  margin-top: 10px;
 }
 
 .login-container {
-  width: 500px;
-  height: 700px;
-  background: red;
+  width: 475px;
+  height: 575px;
+  text-align: center;
+  background: #3f3f3f;
   position: absolute;
-  right: 300px;
-  top: 130px;
+  color: #f1ebeb;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 5%;
+}
+
+.login-container h1 {
+  margin-left: 75px;
+  color: #f1ebeb;
+  font-family: "Sansita Swashed", cursive;
+  text-shadow: 1.5px 1.5px #bdb7b7;
+  font-size: 50px;
 }
 
 .login-inputs {
@@ -87,23 +87,35 @@
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  background-color: #5e5a5a;
+  background-color: #3f3f3f;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-shadow: 0px 8px 5px 0px black;
+          box-shadow: 0px 8px 5px 0px black;
 }
 
 .navbar > h1 {
-  margin-left: 50px;
+  margin-left: 75px;
+  color: #f1ebeb;
+  font-family: "Sansita Swashed", cursive;
+  text-shadow: 1.5px 1.5px #bdb7b7;
+}
+
+.navbar h3 {
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
 }
 
 .hamburger {
   width: 50px;
   height: 50px;
-  background-color: pink;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  border-radius: 5px;
+  font-size: 30px;
+  border: 1px solid #f1ebeb;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -123,6 +135,17 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  color: #f1ebeb;
+  margin-right: 50px;
+}
+
+.nav-ui img {
+  width: 50px;
+  height: 50px;
+  background-color: #f1ebeb;
+  border-radius: 50%;
+  -webkit-box-shadow: 0 0 10px #ffffff;
+          box-shadow: 0 0 10px #ffffff;
 }
 
 .noDisplay {
@@ -135,7 +158,7 @@
   top: 110px;
   width: 150px;
   height: 350px;
-  background-color: blue;
+  background-color: #3f3f3f;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -166,6 +189,7 @@
 
 .ui-items {
   margin-top: 10px;
+  color: #f1ebeb;
 }
 
 .logout {
@@ -175,7 +199,9 @@
 .dashboard {
   height: 90vh;
   width: 100%;
-  background-color: #c3a1e4;
+  background-image: url(https://i.pinimg.com/originals/79/af/85/79af850d3d436064fef7399f0a1783fe.jpg);
+  background-position: center;
+  background-repeat: none;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -188,14 +214,17 @@
 }
 
 .widget {
-  height: 400px;
+  height: 600px;
   width: 500px;
-  border: 5px solid black;
+  background-color: #3f3f3f;
+  color: #f1ebeb;
   font-size: 35px;
+  border-radius: 5%;
+  -webkit-box-shadow: 8px 8px 5px 0px black;
+          box-shadow: 8px 8px 5px 0px black;
 }
 
 .dad-joke h2 {
-  text-decoration: underline;
   text-align: center;
   text-transform: uppercase;
   font-size: 45px;
@@ -207,6 +236,40 @@
   margin: 15px 15px;
   border: 1px solid black;
   padding: 10px 10px;
+  font-family: 'Chilanka', cursive;
+}
+
+.dad-joke div {
+  margin-top: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+}
+
+.dad-joke div button {
+  margin-top: 15px;
+  background-color: #2d7fc2;
+  color: black;
+  font-size: 20px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  -webkit-box-shadow: 2px 4px 5px 0px black;
+          box-shadow: 2px 4px 5px 0px black;
+  font-size: 20px;
+}
+
+.dad-joke div button :hover {
+  cursor: pointer;
 }
 
 .weather {
@@ -225,18 +288,56 @@
           justify-content: center;
 }
 
+.weather h2 {
+  font-family: "Sansita Swashed", cursive;
+  margin-bottom: 10px;
+}
+
+.weather h3 {
+  text-transform: uppercase;
+}
+
+.weather-icon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 200px;
+  width: 200px;
+  background-color: skyblue;
+  -webkit-box-shadow: 2px 4px 5px 0px black;
+          box-shadow: 2px 4px 5px 0px black;
+  border-radius: 5%;
+  margin-top: 10px;
+}
+
 .scale-btn {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  font-size: 50px;
+}
+
+.scale-btn :hover {
+  cursor: pointer;
 }
 
 .selected {
-  color: black;
+  color: #f1ebeb;
 }
 
 .unselected {
-  color: #5c5a5a;
+  color: #9c9a9a;
+}
+
+.temp {
+  font-size: 100px;
+  text-align: center;
 }
 
 .settings {
@@ -257,5 +358,99 @@
 
 .settings > div div {
   margin-top: 20px;
+}
+
+.weather-app {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.weather-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 70px;
+  height: 700px;
+  width: 600px;
+  background-color: #3f3f3f;
+  border-radius: 5%;
+}
+
+.weather-container h2 {
+  font-size: 50px;
+  color: #f1ebeb;
+}
+
+.weather-container h3 {
+  font-size: 25px;
+  color: #f1ebeb;
+}
+
+.weather-container .temp {
+  font-size: 50px;
+  color: #f1ebeb;
+}
+
+.weather-container button {
+  background-color: #2d7fc2;
+  color: black;
+  font-size: 20px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  -webkit-box-shadow: 2px 4px 5px 0px black;
+          box-shadow: 2px 4px 5px 0px black;
+  padding: 10px 15px;
+}
+
+.weather-container button :hover {
+  cursor: pointer;
+}
+
+.weather-container button:nth-of-type(1) {
+  margin-bottom: 20px;
+}
+
+.search-input {
+  margin-top: 20px;
+  height: 50px;
+  width: 200px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.search-input input {
+  height: 35px;
+  font-size: 20px;
+  border-radius: 15px;
+  border: none;
+  outline: none;
+  padding: 3px 5px;
+}
+
+.search-input input:nth-of-type(2) {
+  margin-left: 5px;
 }
 /*# sourceMappingURL=styles.css.map */
