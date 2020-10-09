@@ -30,7 +30,7 @@ function Weather(props) {
 
     const handleSearchWeather = async () => {
         setLoading(true)
-        await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${city},${state},us&appid=${apiKey}`)
+        await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${city.toLocaleLowerCase()},${state.toLocaleLowerCase()},us&appid=${apiKey}`)
             .then(res => {
                 setSearchWeather(res.data)
                 setCity('')

@@ -15,7 +15,6 @@ function Register(props) {
     const [count, setCount] = useState(1)
 
 
-
     const handleSubmit = () => {
 
         if (firstName, lastName, email, password, confirm) {

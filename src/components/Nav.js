@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom'
 
 function Nav(props) {
     const [display, setDisplay] = useState(false)
+
     const handleDisplay = () => {
         setDisplay(!display)
     }
