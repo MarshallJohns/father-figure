@@ -379,6 +379,14 @@ button:nth-of-type(2){
     cursor: pointer;
     background-color:  #48a2ec;
   }
+  input{
+    outline: none;
+    height: 30px;
+    border-radius: 15px;
+    padding: 10px 10px;
+    font-size: 18px;
+    box-shadow: 2px 3px 5px 0px rgba(0,0,0,0.75);
+  }
 }
 
 
