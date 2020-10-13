@@ -271,8 +271,8 @@ body {
 .display {
   position: absolute;
   right: 15px;
-  top: 110px;
-  width: 150px;
+  top: 95px;
+  width: 200px;
   height: 350px;
   background-color: #3f3f3f;
   display: -webkit-box;
@@ -289,6 +289,8 @@ body {
       -ms-flex-pack: justify;
           justify-content: space-between;
   text-decoration: none;
+  -webkit-transition: 850ms;
+  transition: 850ms;
 }
 
 .dropdown-ui {

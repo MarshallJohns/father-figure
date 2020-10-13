@@ -206,8 +206,8 @@ button:nth-of-type(2){
 .display {
   position: absolute;
   right: 15px;
-  top: 110px;
-  width: 150px;
+  top: 95px;
+  width: 200px;
   height: 350px;
   background-color: $primary-color;
   display: flex;
@@ -215,6 +215,7 @@ button:nth-of-type(2){
   align-items: center;
   justify-content: space-between;
   text-decoration: none;
+  transition: 850ms;
 }
 
 .dropdown-ui {

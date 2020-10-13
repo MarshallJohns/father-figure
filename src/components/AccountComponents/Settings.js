@@ -8,20 +8,6 @@ function Settings(props) {
     const [zipcode, setZipcode] = useState(props.zipcode)
     const [profile_picture, setProfile_picture] = useState(props.profile_picture)
 
-    // useEffect(() => {
-    //     Axios.get('/api/auth/info').then(res => {
-    //         console.log(res.data)
-    //         const { zipcode, profile_pic } = res.data
-    //         setInputs({
-    //             zipcode: zipcode,
-    //             profile_picture: profile_pic
-    //         })
-    //     })
-    // }, [])
-
-
-    // console.log(props)
-
     const handleSubmit = () => {
         // const { zipcode, profile_picture } = inputs
         Axios.put('/api/auth/edit', { zipcode, profile_picture }).then(res => {

@@ -6,6 +6,7 @@ const app = express()
 const authCtrl = require('./controllers/authController')
 const userCtrl = require('./controllers/userController')
 
+
 const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env
 app.use(express.json())
 app.use(session({
