@@ -2,6 +2,7 @@ require('dotenv').config()
 const express = require('express')
 const massive = require('massive')
 const session = require('express-session')
+const path = require('path')
 const app = express()
 const authCtrl = require('./controllers/authController')
 const userCtrl = require('./controllers/userController')
@@ -28,6 +29,11 @@ app.put('/api/auth/edit', authCtrl.editInfo)
 app.post('/api/jokes', userCtrl.saveJoke)
 app.get('/api/jokes', userCtrl.getJokes)
 // app.get('/api/weather/current', userCtrl.getCurrentWeather)
+
+app.use(express.static(__dirname + '/../build'))
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../build/index.html'))
+})
 
 
 massive({
