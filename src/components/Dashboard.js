@@ -57,9 +57,14 @@ function Dashboard(props) {
                         <h2>Have a joke on us!</h2>
                         <p>{dadJoke.joke}</p>
                         {dadJoke.saved ?
-                            <div>Want another joke?<button onClick={() => handleDadJoke()}>Click here!</button></div>
+                            <div><button onClick={() => handleDadJoke()}>Another One!</button></div>
                             :
-                            <div>Wanna save that to your arsenal?<button onClick={() => handleSave()}>Click Here!</button></div>
+                            <div>
+                                <div>
+                                    <button onClick={() => handleDadJoke()}>New Joke!</button>
+                                    <button onClick={() => handleSave()}>Save Joke!</button>
+                                </div>
+                            </div>
                         }
                     </div>
                 </div>

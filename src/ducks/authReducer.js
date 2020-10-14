@@ -1,4 +1,5 @@
 const initialState = {
+    isLoggedIn: false,
     firstName: '',
     lastName: '',
     email: '',
@@ -37,12 +38,12 @@ export default function reducer(state = initialState, action) {
         case LOGIN_USER: {
             const { first_name, last_name, email } = action.payload.user
             const { profile_pic, zipcode } = action.payload.userInfo
-            return { ...state, firstName: first_name, lastName: last_name, email: email, profile_picture: profile_pic, zipcode: zipcode }
+            return { ...state, isLoggedIn: true, firstName: first_name, lastName: last_name, email: email, profile_picture: profile_pic, zipcode: zipcode }
         }
         case GET_USER: {
             const { first_name, last_name, email } = action.payload.user
             const { profile_pic, zipcode } = action.payload.userInfo
-            return { ...state, firstName: first_name, lastName: last_name, email: email, profile_picture: profile_pic, zipcode: zipcode }
+            return { ...state, isLoggedIn: true, firstName: first_name, lastName: last_name, email: email, profile_picture: profile_pic, zipcode: zipcode }
         }
         case LOGOUT_USER: {
             return initialState

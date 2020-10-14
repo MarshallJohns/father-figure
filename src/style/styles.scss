@@ -271,11 +271,11 @@ button:nth-of-type(2){
     font-family: 'Chilanka', cursive;
   }
   div{
-    margin-top: 30px;
-    @include flexColumnCenter();
+    margin-top: 10px;
+    @include flexCenter();
     text-align: center;
     button{
-      margin-top: 15px;
+      margin-top: 5px;
       background-color: #2d7fc2;
       color: black;
       font-size: 20px;
@@ -285,7 +285,9 @@ button:nth-of-type(2){
       outline: none;
       box-shadow: 2px 4px 5px 0px rgba(0,0,0,1);
       font-size: 20px;
-      
+    }
+    button:nth-of-type(2){
+      margin-left: 15px;
     }
     button:hover{
       cursor: pointer;

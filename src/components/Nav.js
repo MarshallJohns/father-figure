@@ -2,7 +2,7 @@ import Axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { getUser, logoutUser } from '../ducks/authReducer'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 
 
 
@@ -10,6 +10,7 @@ function Nav(props) {
     const [display, setDisplay] = useState(false)
 
     const handleDisplay = () => {
+
         setDisplay(!display)
     }
 
@@ -21,6 +22,9 @@ function Nav(props) {
     }
 
     useEffect(() => {
+        if (!props.isLoggedIn) {
+            props.history.push('/')
+        }
         Axios.get('/api/auth/user').then(res => {
             props.getUser(res.data)
         })
@@ -47,4 +51,4 @@ function Nav(props) {
     )
 }
 const mapStateToProps = reduxState => reduxState
-export default connect(mapStateToProps, { getUser, logoutUser })(Nav)
+export default withRouter(connect(mapStateToProps, { getUser, logoutUser })(Nav))

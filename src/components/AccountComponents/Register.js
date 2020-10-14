@@ -48,6 +48,7 @@ function Register(props) {
                             <div>Email:</div>
                             <input value={email} type='email' onChange={(e) => setEmail(e.target.value)} />
                         </div>
+                        <button onClick={() => props.history.push('/')}>Cancel</button>
                         <button onClick={() => setCount(count + 1)}>Next</button>
                     </div>
                     :
