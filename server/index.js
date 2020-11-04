@@ -26,9 +26,10 @@ app.get('/api/auth/info', authCtrl.getUserInfo)
 app.put('/api/auth/edit', authCtrl.editInfo)
 
 //* User endpoints
+app.get('/api/jokes/random', userCtrl.randomJoke)
 app.post('/api/jokes', userCtrl.saveJoke)
 app.get('/api/jokes', userCtrl.getJokes)
-// app.get('/api/weather/current', userCtrl.getCurrentWeather)
+app.get('/api/weather/current', userCtrl.getCurrentWeather)
 
 app.use(express.static(__dirname + '/../build'))
 app.get('*', (req, res) => {

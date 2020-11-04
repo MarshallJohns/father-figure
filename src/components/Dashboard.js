@@ -5,27 +5,31 @@ import Axios from 'axios'
 
 
 
+
 function Dashboard(props) {
     const [dadJoke, setDadJoke] = useState({
         joke: '',
         saved: false
     })
     const [weather, setWeather] = useState({
-        main: {},
-        weather: {}
+
     })
-    const [loading, setLoading] = useState(true)
+    const [zipcode, setZipcode] = useState(null)
     const [fahrenheit, setFahrenheit] = useState(true)
 
-    useEffect(() => {
-        handleWeather()
+    useEffect(async () => {
+        await Axios.get('/api/auth/info').then(res => {
+            setZipcode(res.data.zipcode)
+        })
         handleDadJoke()
+        handleWeather()
+
     }, [])
 
     const handleDadJoke = async () => {
-        await Axios.get('https://icanhazdadjoke.com/', { headers: { "User-Agent": "My Library (https://github.com/MarshallJohns/father-figure)", "Accept": "application/json" } })
+        await Axios.get('/api/jokes/random')
             .then(res => {
-                setDadJoke({ joke: res.data.joke, saved: false })
+                setDadJoke({ ...dadJoke, joke: res.data })
             })
     }
     const handleSave = (e) => {
@@ -35,23 +39,21 @@ function Dashboard(props) {
         })
     }
     const handleWeather = async () => {
-        const apiKey = '1c4df6046da516c6860ef3c69f5acf67'
-        if (props.zipcode) {
-            await Axios.get(`http://api.openweathermap.org/data/2.5/weather?zip=${props.zipcode},&appid=${apiKey}`)
-                .then(res => {
-                    setWeather(res.data)
-                    setLoading(false)
-                })
-        }
+        await Axios.get('/api/weather/current')
+            .then(res => {
+                setWeather(res.data)
+                // setLoading(false)
+            })
+
     }
 
-    const kelvin = weather.main.temp
+    const kelvin = weather.temperature
     const toFahrenheit = (k) => Math.floor((k - 273.15) * 9 / 5 + 32)
     const toCelsius = (k) => Math.floor(k - 274.15)
     return (
 
         < div>
-            {!loading ? <div className='dashboard'>
+            <div className='dashboard'>
                 <div className='widget'>
                     <div className='dad-joke'>
                         <h2>Have a joke on us!</h2>
@@ -69,15 +71,15 @@ function Dashboard(props) {
                     </div>
                 </div>
                 <div className='widget'>
-                    {!props.zipcode ?
+                    {!zipcode ?
                         <div>Please save your zipcode in settings to view your current weather.</div>
                         :
                         <div className='weather'>
 
                             <h2>{weather.name}</h2>
-                            <h3>{weather.weather[0].description}</h3>
+                            <h3>{weather.condition}</h3>
                             <div className='weather-icon'>
-                                <img src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@4x.png`} />
+                                <img src={weather.icon} />
                             </div>
                             {fahrenheit ? <div className='temp'>{toFahrenheit(kelvin)}°</div> : <div className='temp'>{toCelsius(kelvin)}°</div>}
                             <div className='scale-btn'>
@@ -87,7 +89,7 @@ function Dashboard(props) {
                             </div>
                         </div>}
                 </div>
-            </div> : <div>loading</div>}
+            </div>
         </div >
     )
 }

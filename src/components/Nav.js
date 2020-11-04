@@ -22,12 +22,10 @@ function Nav(props) {
     }
 
     useEffect(() => {
-        if (!props.isLoggedIn) {
-            props.history.push('/')
-        }
         Axios.get('/api/auth/user').then(res => {
             props.getUser(res.data)
         })
+
     }, [])
     return (
         <header className='navbar'>

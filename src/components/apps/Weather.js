@@ -4,8 +4,7 @@ import axios from 'axios'
 
 function Weather(props) {
     const [weather, setWeather] = useState({
-        main: {},
-        weather: {}
+
     })
     const [searchWeather, setSearchWeather] = useState({
         main: {},
@@ -20,12 +19,12 @@ function Weather(props) {
     const apiKey = '1c4df6046da516c6860ef3c69f5acf67'
 
     useEffect(() => {
-        if (props.zipcode) {
-            axios.get(`http://api.openweathermap.org/data/2.5/weather?zip=${props.zipcode}&appid=${apiKey}`).then(res => {
-                setWeather(res.data)
-                setLoading(false)
-            })
-        }
+
+        axios.get(`/api/weather/current`).then(res => {
+            setWeather(res.data)
+            setLoading(false)
+        })
+
     }, [])
 
     const handleSearchWeather = async () => {
@@ -41,7 +40,7 @@ function Weather(props) {
     }
 
 
-    const kelvin = weather.main.temp
+    const kelvin = weather.temperature
     const searchKelvin = searchWeather.main.temp
     const toFahrenheit = (k) => Math.floor((k - 273.15) * 9 / 5 + 32)
     const toCelsius = (k) => Math.floor(k - 274.15)
@@ -79,9 +78,9 @@ function Weather(props) {
                         <div className='weather-container'>
                             <div className='weather'>
                                 <h2>{weather.name}</h2>
-                                <h3>{weather.weather[0].description}</h3>
+                                <h3>{weather.condition}</h3>
                                 <div className='weather-icon'>
-                                    <img src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@4x.png`} />
+                                    <img src={weather.icon} />
                                 </div>
                                 {fahrenheit ? <div className='temp'>{toFahrenheit(kelvin)}°</div> : <div className='temp'>{toCelsius(kelvin)}°</div>}
                                 <div className='scale-btn'>
