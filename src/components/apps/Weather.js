@@ -16,7 +16,7 @@ function Weather(props) {
     const [myWeather, setMyWeather] = useState(false)
     const [state, setState] = useState('')
     const [city, setCity] = useState('')
-    const apiKey = '1c4df6046da516c6860ef3c69f5acf67'
+    // const apiKey = '1c4df6046da516c6860ef3c69f5acf67'
 
     useEffect(() => {
 
@@ -29,7 +29,7 @@ function Weather(props) {
 
     const handleSearchWeather = async () => {
         setLoading(true)
-        await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${city.toLocaleLowerCase()},${state.toLocaleLowerCase()},us&appid=${apiKey}`)
+        await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${city.toLocaleLowerCase()},${state.toLocaleLowerCase()},us&appid=${process.env.REACT_APP_WEATHER_API_KEY}`)
             .then(res => {
                 setSearchWeather(res.data)
                 setCity('')

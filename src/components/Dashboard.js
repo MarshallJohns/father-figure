@@ -20,6 +20,7 @@ function Dashboard(props) {
     useEffect(async () => {
         await Axios.get('/api/auth/info').then(res => {
             setZipcode(res.data.zipcode)
+
         })
         handleDadJoke()
         handleWeather()

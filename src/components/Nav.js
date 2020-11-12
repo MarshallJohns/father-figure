@@ -14,8 +14,7 @@ function Nav(props) {
         setDisplay(!display)
     }
 
-    const handleLogout = (e) => {
-
+    const handleLogout = () => {
         Axios.delete('/api/auth/logout').then(res => {
             props.logoutUser()
         })
