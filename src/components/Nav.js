@@ -10,7 +10,6 @@ function Nav(props) {
     const [display, setDisplay] = useState(false)
 
     const handleDisplay = () => {
-
         setDisplay(!display)
     }
 
@@ -48,4 +47,4 @@ function Nav(props) {
     )
 }
 const mapStateToProps = reduxState => reduxState
-export default withRouter(connect(mapStateToProps, { getUser, logoutUser })(Nav))
+export default connect(mapStateToProps, { getUser, logoutUser })(Nav)

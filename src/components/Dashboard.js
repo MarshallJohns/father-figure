@@ -17,13 +17,13 @@ function Dashboard(props) {
     const [zipcode, setZipcode] = useState(null)
     const [fahrenheit, setFahrenheit] = useState(true)
 
-    useEffect(async () => {
-        await Axios.get('/api/auth/info').then(res => {
+    useEffect(() => {
+        Axios.get('/api/auth/info').then(res => {
             setZipcode(res.data.zipcode)
 
+            handleDadJoke()
+            handleWeather()
         })
-        handleDadJoke()
-        handleWeather()
 
     }, [])
 

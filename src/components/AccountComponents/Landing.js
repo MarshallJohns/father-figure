@@ -18,7 +18,7 @@ function Landing(props) {
             }).catch(err => console.log(err.message))
         } else (alert('Please fill out both fields'))
     }
-
+    console.log('refresh')
     return (
         <div className='Landing'>
             <div className='login-container'>
